@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-		id          = "myfirstapp"
+		id = "amazing-chat"
         version     = "1.0.0" >
 
     <name>GUI</name>
-    <description>My first mobile app with jQuery Mobile user interface</description>
+    <description>Amazing chat app</description>
     <author href="http://mypersonalwebsite.com" email="johnbrown@gmail.com">
-		John Brown
+		siematypie
 	</author>
 	<platform name="android" />
 	<access origin="89.46.222.106:5000*"/> 

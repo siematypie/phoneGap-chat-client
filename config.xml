@@ -10,6 +10,7 @@
 		John Brown
 	</author>
 	<platform name="android" />
+	<access origin="89.46.222.106:5000*"/> 
 	
 	<plugin name="cordova-plugin-device" spec="~1.1.4" />
 	<plugin name="cordova-plugin-dialogs" spec="~1.3.1" />

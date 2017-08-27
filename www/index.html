@@ -4,234 +4,267 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
-    <title>Blank App</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript"
-            src="js/socket.io.slim.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <title>The ultimate chat</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/sweetalert.css" rel="stylesheet" />
 </head>
 
 
 <body>
-<div class="jumbotron">
-    <h1 class="text-center">The ultimate chat-app!</h1>
-    <p class="text-center">Say something!</p>
-</div>
+  <button id="download" type="button">download</button>
 
-<div class="container">
-    <div class="informer">
-
+    <div class="jumbotron">
+        <h1 class="text-center">The ultimate chat-app!</h1>
+        <p class="text-center">Say something!</p>
     </div>
-    <div class="well" id="nickname-well">
-        <h1 class="text-center">Hi!</h1>
-        <h2 class="text-center">Before you start chatting, please enter your nickname below.</h2>
-        <div class="col-sm-8 col-centered">
-            <div class="form-group">
-                <input type="text" class="form-control text-center" id="nickname" placeholder="Nickname">
-            </div>
-            <div class="text-center invisible-button">
-                <button type="submit" id="btn-connect" class="btn btn-default btn-lg">
-                    <span class="text-primary glyphicon glyphicon-log-in icon-big"></span><br/> Enter chat!
-                </button>
+
+    <div class="container">
+        <div class="informer">
+
+        </div>
+
+        <div class="well" id="nickname-well">
+            <h1 class="text-center">Hi!</h1>
+            <h2 class="text-center">Before you start chatting, please enter your nickname below.</h2>
+            <div class="col-sm-8 col-centered">
+                <div class="form-group">
+                    <input type="text" class="form-control text-center" id="nickname" placeholder="Nickname">
+                </div>
+                <div class="text-center invisible-button">
+                    <button type="submit" id="btn-connect" class="btn btn-default btn-lg">
+                        <span class="text-primary glyphicon glyphicon-log-in icon-big"></span><br /> Enter chat!
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="well" id="message-well">
-        <div class="col-sm-11 col-centered">
-            <div class="row">
-                <div class="col-md-9">
+        <div class="well" id="message-well">
+            <div class="col-sm-11 col-centered">
+                <div class="row">
+                    <div class="col-md-9">
 
-                    <p>Message board</p>
-                    <div id="message-board" class="scrollable">
-                        <dl id="messages"></dl>
-                    </div>
-                    <form id="message-form" action="#">
-
-                        <div class="form-group">
-                            <label for="message" class="control-label">Your message:</label>
-                            <div class="input-group input-group-unstyled">
-                                <input type="text" class="form-control" id="myMessage" placeholder="Message">
-                                <span class="input-group-addon">
-                                    <span id="sendbutton"
-                                          class="text-primary glyphicon glyphicon-send icon-big pull-left">
-                                    </span>
-                                </span>
-                            </div>
+                        <p>Message board</p>
+                        <div id="message-board" class="scrollable">
+                            <dl id="messages"></dl>
                         </div>
-                         <div class="form-group" id="file-upload">
+                        <form id="message-form" action="#">
 
-                            <div class="input-group input-group-unstyled file-input">
-                                <input type="file" class="form-control" id="myFile" placeholder="File">
-                                <span class="input-group-addon" id="send-file">
+                            <div class="form-group">
+                                <label for="message" class="control-label">Your message:</label>
+                                <div class="input-group input-group-unstyled">
+                                    <input type="text" class="form-control" id="myMessage" placeholder="Message">
                                     <span class="input-group-addon">
-                                    <span
-                                          class="glyphicon glyphicon-floppy-open icon-big pull-left">
+                                        <span id="sendbutton"
+                                              class="text-primary glyphicon glyphicon-send icon-big pull-left">
+                                        </span>
                                     </span>
-                                </span>
-                                </span>
+                                </div>
                             </div>
-                            <p id="log_out"><br> <a href='#' class='log-out'>Log out</a></p>
+                            <div class="form-group" id="file-upload">
+
+                                <div class="input-group input-group-unstyled file-input">
+                                    <input type="file" class="form-control" id="myFile" placeholder="File">
+                                    <span class="input-group-addon" id="send-file">
+                                        <span class="input-group-addon">
+                                            <button type="button" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-floppy-open icon-big pull-left">
+                                                </span>
+                                            </button>
+                                        </span>
+                                    </span>
+                                </div>
+                                <p>
+                                    <br> <a id="log_out" href='#' class='log-out'>Log out</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Users logged in</p>
+                        <div id="user-board" class="scrollable">
+                            <ul id="logged-users"></ul>
                         </div>
-                    </form>
-                </div>
-                <div class="col-md-3">
-                    <p>Users logged in</p>
-                    <div id="user-board" class="scrollable">
-                        <ul id="logged-users"></ul>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
 
-<script type="text/javascript">
+    <div id="myModal" class="modal fade " role="dialog">
+        <div class="modal-dialog large">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div id="header-content">
+                    </div>
+                    <h4 class="text-center" id="modal-title">file basjkdnaskdnaskjd</h4>
+                </div>
+                <div class="modal-body text-center" id="modal-body">
 
+                </div>
+                <div class="modal-footer">
+                    <div class="text-left pull-left" id="footer-content">
 
-    $(document).ready(function () {
-        var serverAddress = 'http://89.46.222.106:5000';
-        // var serverAddress = 'localhost:5000';
+                    </div>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="DownloadManager.js"></script>
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.signalR-2.2.2.min.js"></script>
+    <!-- <script src="~/signalr/hubs"></script> -->
+    <script src="http://192.168.1.24:54522/signalr/hubs"></script>
+
+    <script src="js/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+       $.connection.hub.url = 'http://192.168.1.24:54522/signalr';
+       document.addEventListener("deviceready", hehe
+      ,true);
+      function hehe(){
+        //once device is ready
+
+    //     navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    // destinationType: Camera.DestinationType.FILE_URI });
+    //
+    //     function onSuccess(imageURI) {
+    //         var image = document.getElementById('myImage');
+    //         image.src = imageURI;
+    //     }
+    //
+    //     function onFail(message) {
+    //         alert('Failed because: ' + message);
+    //     }
+      alert("HIHI" + download);
+      alert(console.log("DDD"));
+      alert(console.log(download));
+      $("#download").click(function (){
+        var fail = function (message) {
+           alert(message)
+        }
+        var success = function (data) {
+               console.log("succes");
+        }
+        cordova.plugins.DownloadManager.download("https://siematypiestorage.blob.core.windows.net/chatcontainer/Screenshot_20170826-233506.png", success, fail);
+
+      });
+
+    }
+        var mb = 1048576;
+        var map = {
+            "<3": "\u2764\uFE0F",
+            "</3": "\uD83D\uDC94",
+            ":D": "\uD83D\uDE00",
+            ":)": "\uD83D\uDE03",
+            ";)": "\uD83D\uDE09",
+            ":(": "\uD83D\uDE12",
+            ":p": "\uD83D\uDE1B",
+            ";p": "\uD83D\uDE1C",
+            ";(": "\uD83D\uDE22",
+        };
+
+        function escapeSpecialChars(regex) {
+            return regex.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+        }
+
+        if (/Android/.test(navigator.appVersion)) {
+            $('input[type="text"]').attr('autocomplete', "off");
+        }
+        var imgid = 0;
+        var chat = $.connection.chatHub;
+        var filesender;
+        var username;
         var messageBoard = $("#message-board");
         var nicknameWell = $('#nickname-well');
         var preventOnScroll = false;
         var autoScrollingEnabled = true;
-        var $currentWindow = nicknameWell;
-        var socket = null;
-        var reader;
-        var selectedFile;
-        var fileName;
-        var progressWidth;
-        var sendingSocket;
+        var $currentWindow = $();
 
         $.fn.showAsCurrent = function () {
-            $currentWindow.hide();
-            this.fadeIn(500);
-            $currentWindow = $(this);
+            if ($(this).selector !== $currentWindow.selector) {
+                console.log($currentWindow);
+                console.log($(this));
+                $currentWindow.hide();
+                this.fadeIn(500);
+                $currentWindow = $(this);
+            }
         };
 
-        if (localStorage.getItem('userData')){
-            $.ajax({
-                type: 'POST',
-                url: serverAddress + '/validate',
-                data: localStorage.getItem('userData'),
-                success: function(data) {
-                    if(data.validation){
-                        connectToSocket();
-                    } else {
-                        if (data.error){
-                            showError(data.error);
-                        }
-                        nicknameWell.showAsCurrent();
-                    }
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            });
-        } else {
-            nicknameWell.showAsCurrent();
-        }
-
-        function sendMessage() {
-            socket.emit('message', $('#myMessage').val());
-            autoScrollingEnabled = true;
-            $('#myMessage').val('').focus();
-        }
 
         $('#btn-connect').click(function () {
-            nickname = $('#nickname').val();
-            if (nickname) {
-                $.ajax({
-                type: 'POST',
-                url: serverAddress + '/getsession',
-                data: JSON.stringify({"username":nickname}),
-                success: function(data) {
-                    localStorage.setItem('userData', JSON.stringify(data));
-                    connectToSocket();
-                },
-                contentType: "application/json",
-                dataType: 'json'
-            })
-                 .fail(function(error) {
-                    showError(error.responseJSON.Error, "connection-error");
-                });
+            var username = $('#nickname').val();
+            var identity = new Identity();
+            if (!identity.isValid && username) {
+                chat.server.notify(new NewIdentity(username));
             }
         });
 
-
-        $('#send-file').click(function () {
-            var files = document.getElementById('myFile').files;
-            if (files.length > 0) {
-                selectedFile = files[0];
-                startSending(files[0]);
-            }
+        $("#message-form").submit(function (e) {
+            e.preventDefault && e.preventDefault();
+            e.stopPropagation && e.stopPropagation();
         });
 
-        function startSending(file) {
-            var fileSize = file.size/1024;
-            fileName = file.name;
-            var fileType = file.type;
-            if (fileSize > 10000){
-                alert("File too big! maximum file size is 10mb!");
-                return
-            }
-            reader = new FileReader();
-            reader.onload = function(evnt){
-                sendingSocket.emit('upload', evnt.target.result);
-            };
+        $('#nickname').on('keyup',
+            function (e) {
+                if (e.which === 13 && $('#nickname').val()) {
 
-            reader.onerror = function (error) {
-             console.log('Error: ', error);
-           };
-            $("#file-upload").prepend(
-                "<div class='progress' id='progress-div'>" +
-                "<div class='progress-bar progress-bar-striped active' id='upload-bar' role='progressbar'></div>" +
-                "</div>"
-            );
+                    $('#btn-connect').click();
+                }
 
-            openSendingSocket();
-            progressWidth = 0;
-            $('.file-input').hide()
-        }
-
-
-        $('#sendbutton').click(function () {
-            sendMessage();
-            $(this).hide();
-        });
-
-        $('#nickname').on('keydown', function (e) {
-            if (e.which === 13 && $('#nickname').val()) {
-            $('#btn-connect').click()
-            }
-            setTimeout(function () {   //calls click event after a certain time
                 if ($('#nickname').val()) {
                     $('#btn-connect').fadeIn(500);
                 } else {
                     $('#btn-connect').fadeOut(200);
                 }
-            }, 100);
+            });
+
+        $('#messages').on('click', 'img.enlarge-img', function () {
+            var img = $(this).clone();
+            var link = "<a href=" +
+                img.attr('src') +
+                " class='btn btn-default pull-left download-button' download>" +
+                "<span class='glyphicon glyphicon-floppy-save'></span>" +
+                "</a>";
+            $("#modal-title").html($(img).data("name"));
+            $("#header-content").html(link);
+            img.removeClass("enlarge-img");
+            $('#modal-body').html(img);
+            $('#myModal').modal('show');
         });
 
-        $('#myMessage').on('keydown', function (e) {
-            if (e.which === 13 && $('#myMessage').val()) {
-                sendMessage();
-                e.preventDefault()
+
+        function pageStart() {
+            var identity = new Identity();
+            if (identity.isValid) {
+                chat.server.notify(identity);
             }
-            setTimeout(function () {   //calls click event after a certain time
-                if ($('#myMessage').val()) {
-                    $('#sendbutton').fadeIn(500);
-                } else {
-                    $('#sendbutton').hide();
-                }
-            }, 100);
+            else {
+                nicknameWell.showAsCurrent();
+                connectIfHaveToken();
+            }
+        }
 
-        });
+        function connectIfHaveToken() {
+            var identity = new Identity();
+            if (identity.isValid && nicknameWell.selector === $currentWindow.selector) {
+                chat.server.notify(identity);
+            } else if (!identity.isValid) {
+                setTimeout(connectIfHaveToken, 1000);
+            }
+        }
+
 
         messageBoard.scroll(function () {
             if (preventOnScroll) {
@@ -247,157 +280,372 @@
 
         });
 
-        function showError(error, errorClass){
-            $('.' + errorClass).remove();
-            $('.informer').append("<div class='alert alert-danger alert-dismissable "+ errorClass + "'>" +
-                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"+
-                        error + "</div>")
+        function usernameUpdate(userList) {
+            var users = "";
+            userList.forEach(function (name) {
+                users += "<li>" + name + "</li>";
+            });
+
+            $('#logged-users').html(users);
         }
 
-        $(".log-out").click(function () {
-            event.preventDefault();
-            socket.close();
+
+        chat.client.differentName = function () {
+            var token = localStorage.getItem('token');
+            var name = localStorage.getItem('name');
             localStorage.clear();
-            nicknameWell.showAsCurrent()
+
+            if (name && token) {
+                errorAlert("Sorry, but your previous username " + name + " has already been taken by someone else. Please choose another one!");
+            } else {
+                errorAlert("Sorry, but username " + name + " is already taken.  Please choose another one!");
+            }
+
+            nicknameWell.showAsCurrent();
+            connectIfHaveToken();
+            return false;
+        };
+
+        chat.client.loggedOut = function () {
+            localStorage.clear();
+            swal("You have successfully logged out!", "See you later!", "success");
+            nicknameWell.showAsCurrent();
+            connectIfHaveToken();
+            return false;
+        }
+
+        chat.client.joinedToChat = function (token, userlist) {
+
+            if (token !== "") {
+                localStorage.setItem("token", token);
+            }
+            $('#message-well').showAsCurrent();
+            usernameUpdate(userlist);
+            $('#messages').html("");
+
+        };
+
+        chat.client.sasAquired = function (url, sas) {
+            filesender.startSending(url, sas);
+        };
+
+        chat.client.addUser = function (name) {
+            $('#logged-users').append("<li>" + name + "</li>");
+        }
+
+        chat.client.enters = function (name) {
+            $("#messages").append('<dt><i>' + name + ' joins the conversation</i></dt><dl></dl>');
+        }
+
+        chat.client.broadcastMessage = function (name, message) {
+            var msg = "<dt>" + name + "</dt><dd>" + message + "<dd>";
+            addToMessageBoard(msg);
+        };
+
+        chat.client.broadcastImage = function (fileInfo) {
+
+            console.log(fileInfo);
+            var image = new Image();
+            image.src = fileInfo.url;
+            image.id = "image" + ++imgid;
+            image.className = "img-responsive img-thumbnail enlarge-img";
+            $(image).attr("data-name", fileInfo.name);
+            fileInfo.html = $(image).prop('outerHTML');
+            var fileThumbnail = getFileThumbnailHtml(fileInfo);
+
+            $(image).on('load', function () {
+                addToMessageBoard(fileThumbnail);
+            });
+
+        };
+
+        chat.client.broadcastVideo = function (fileInfo) {
+            fileInfo.html = "<video controls><source src='" + fileInfo.url + "' type='" + fileInfo.type + "'</video>";
+            var fileThumbnail = getFileThumbnailHtml(fileInfo);
+            addToMessageBoard(fileThumbnail);
+        };
+
+        chat.client.broadcastAudio = function (fileInfo) {
+            fileInfo.html = "<audio controls><source src='" + fileInfo.url + "' type='" + fileInfo.type + "'</audio>";
+            var fileThumbnail = getFileThumbnailHtml(fileInfo);
+            addToMessageBoard(fileThumbnail);
+
+        };
+
+        chat.client.broadcastFile = function (fileInfo) {
+            fileInfo.html = "<img src='img/fileicon.png' width='150'/>";
+            var fileThumbnail = getFileThumbnailHtml(fileInfo);
+            addToMessageBoard(fileThumbnail);
+        };
+
+        chat.client.fileTooBig = function (fileSizeInBytes) {
+            showFileInput();
+            swal("File too big!", "Maximum filesize is " + parseInt(fileSizeInBytes) / mb + "MB", "error");
+        }
+
+        chat.client.disconnected = function (name) {
+            //Calls when someone leaves the page
+
+            $("#messages").append('<dt><i>' + name + ' leaves the conversation</i></dt><dl></dl>');
+            $('#logged-users li').remove(":contains('" + name + "')");
+        }
+
+
+        // Start the connection.
+        $.connection.hub.start().done(function () {
+            //Calls the notify method of the server
+            pageStart();
+
+            function sendMessage() {
+                chat.server.send($('#myMessage').val(), new Identity());
+                autoScrollingEnabled = true;
+                $('#myMessage').val('').focus();
+                $(this).hide();
+            }
+
+            $('#log_out').click(function (e) {
+                e.preventDefault && e.preventDefault();
+                e.stopPropagation && e.stopPropagation();
+                chat.server.logOut()
+            });
+
+            $('#sendbutton').click(function () {
+                sendMessage();
+            });
+
+            $('#send-file').click(function () {
+                var files = document.getElementById('myFile').files;
+
+                if (files.length > 0 && !window.fileSender) {
+                    filesender = new FileSender(files[0]);
+                    filesender.broadcastFile();
+                }
+            });
+
+
+            $('#myMessage').on('keyup', function (e) {
+
+                if (e.which === 13) {
+                    e.preventDefault && e.preventDefault();
+                    e.stopPropagation && e.stopPropagation();
+                    if ($('#myMessage').val()) {
+                        sendMessage();
+                    }
+
+                }
+
+                for (var i in map) {
+                    if (map.hasOwnProperty(i)) {
+                        var regex = new RegExp(escapeSpecialChars(i), 'gim');
+                        this.value = this.value = this.value.replace(regex, map[i]);
+                    }
+                }
+
+                if ($('#myMessage').val()) {
+
+                    $('#sendbutton').fadeIn(500);
+                } else {
+                    $('#sendbutton').hide();
+                }
+
+            });
         });
 
-        function connectToSocket() {
-            if (socket){
-                socket.close();
-            }
-            var userData = JSON.parse(localStorage.getItem('userData'));
-            socket = io.connect(serverAddress ,{'forceNew': true, query: "id=" + userData.id +"&username="+ encodeURIComponent(userData.username) ,transports: ['websocket']});
+        $.connection.hub.disconnected(function () {
 
-            socket.on('disconnect', function(){
-                console.log('disconnected');
-            });
+            if ($.connection.hub.lastError) {
 
-            socket.on('message', function (msg) {
-                $("#messages").append(msg);
+                //            alert("Disconnected. Reason: " +  $.connection.hub.lastError.message);
+                swal({
+                    title: 'You have been disconnected',
+                    type: "error",
 
-                if (autoScrollingEnabled) {
-                    messageBoard.scrollTop(messageBoard[0].scrollHeight);
-                    preventOnScroll = true;
-                }
+                    showCancelButton: false,
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false,
+                    closeOnConfirm: false,
+                    confirmButtonColor: '#F27474',
+                    confirmButtonText: 'Reconnect me!'
 
-                console.log('Received message');
-            });
-
-            socket.on('connectedUserChange', function (userIds) {
-                var users = "";
-                userIds.data.forEach(function (id) {
-                    users += "<li>" + id + "</li>";
+                }, function (isConfirm) {
+                    swal("Reconnecting...", "", "warning");
+                    $.connection.hub.start().done(function () {
+                        swal({
+                            title: 'Connected!',
+                            timer: 500
+                        });
+                        pageStart();
+                    });
                 });
 
-                $('#logged-users').html(users); });
-
-            socket.on('joinSuccessful', function () {
-                $('#message-well').showAsCurrent();
-            });
-
-            socket.on('loginNeeded',function (error) {
-                if(error){
-                    $('.informer').append("<div class='alert alert-danger alert-dismissable'>" +
-                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"+
-                        error + "</div>")
-                }
-                $('#nickname-well').fadeIn(500);
-            });
-
-            socket.on('fileBroadcast', function (fileJson) {
-                dd = $('<dt>' + fileJson.fileSender + " is sending a file!</dt>");
-                link = createDownloadLink(fileJson);
-                dt =$("<dd></dd>");
-                dt.append(link);
-                $("#messages").append([dd, dt]);
-                if (autoScrollingEnabled) {
-                    messageBoard.scrollTop(messageBoard[0].scrollHeight);
-                    preventOnScroll = true;
-                }
-            });
-
-        }
-
-        function openSendingSocket(){
-            if (sendingSocket){
-                sendingSocket.close();
+                //            setTimeout(function () {
+                //                alert("RECONECTIN'");
+                //                $.connection.hub.start().done(function () {
+                //                    swal({
+                //                        title: 'Connected!',
+                //                        timer: 500
+                //                    });
+                //                    pageStart();
+                //                });
+                //            }, 6000);
             }
-            var userData = JSON.parse(localStorage.getItem('userData'));
-            sendingSocket = io.connect(serverAddress+'/files' ,{'forceNew': true ,transports: ['websocket']});
+        });
 
-            sendingSocket.on('moreData', function (data){
-                console.log(data['percent']);
-                var uploadBar = $('#upload-bar');
-                uploadBar.css("width",data['percent']+"%");
-                uploadBar.text(Math.round(data['percent']) + "%");
-                var place = data['place'] * 524288; //The Next Blocks Starting Position
-                var newFile; //The Variable that will hold the new Block of Data
-                if(selectedFile.webkitSlice) {
-                    newFile = selectedFile.webkitSlice(place, place + Math.min(524288, (selectedFile.size - place)));
-                } else if (selectedFile.mozSlize) {
-                     newFile = selectedFile.mozSlice(place, place + Math.min(524288, (selectedFile.size-place)));
-                } else {
-                    newFile = selectedFile.slice(place, place + Math.min(524288, (selectedFile.size-place)));
-                }
-                reader.readAsArrayBuffer(newFile);
-            });
-
-            sendingSocket.on('fileUploaded', function () {
-                $('#upload-bar').css("width",100+"%").text("Your file is processed...");
-            });
-
-            sendingSocket.on('fileSent', function () {
-                $('#progress-div').remove();
-                $('.file-input').fadeIn();
-                selectedFile = null;
-                $('#myFile').val('');
-            });
-
-            sendingSocket.emit('startSending', fileName, selectedFile.size, selectedFile.type, userData);
-
-
-        }
-
-
-
-        function createDownloadLink(fileJson) {
-            blob = new Blob([fileJson.arrayBuffer], {type: fileJson.fileType});
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement("a");
-            a.download = fileJson.fileName;
-            a.title = "DOWNLOAD ME";
-            a.href = url;
-            a.textContent = fileJson.fileName + " (" + (fileJson.fileSize/1048576).toFixed(2) + "mb)";
-            return a;
-        }
-
-        function dataURIToBlob(dataURI, callback) {
-          var binStr = atob(dataURI.split(',')[1]),
-            len = binStr.length,
-            arr = new Uint8Array(len),
-            mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-          for (var i = 0; i < len; i++) {
-            arr[i] = binStr.charCodeAt(i);
-          }
-
-          return new Blob([arr], {
-            type: mimeString
-          });
+        function errorAlert(msg) {
+            swal(
+                'Oops...',
+                msg,
+                'error'
+            );
         }
 
         (function ($) {
             $.fn.scrolledToBottom = function () {
-                console.log(this[0].scrollHeight +" " +  this[0].scrollTop+" " + this.innerHeight());
-                return this[0].scrollHeight - this[0].scrollTop === this.innerHeight();
+                return this[0].scrollHeight - this[0].scrollTop <= this.innerHeight() + 30;
             };
         }(jQuery));
 
-    });
+        function Identity() {
+            this.token = localStorage.getItem('token');
+            this.name = localStorage.getItem('name');
+            this.isValid = this.token && this.name;
+        }
 
+        function NewIdentity(name) {
+            this.name = name;
+            this.token = "";
+            localStorage.setItem("name", name);
+        }
 
+        function FileInfo(file) {
+            this.name = file.name;
+            this.size = file.size;
+            this.extension = file.name.split('.').pop();
+            this.type = file.type;
+        }
 
+        function FileSender(file) {
+            var that = this;
+            this.file = file;
+            this.reader = new FileReader();
+            this.url = null;
+            this.sas = null;
+            this.reader.onloadend = function (evt) {
+                if (evt.target.readyState === FileReader.DONE) {
+                    var requestData = new Uint8Array(evt.target.result);
+                    that.sendToAzure(requestData);
+                }
+            }
 
-</script>
+            this.startSending = function (url, sastoken) {
+                this.url = url;
+                this.sas = sastoken;
+                var fileContent = that.file.slice(0, this.file.size - 1);
+                this.reader.readAsArrayBuffer(fileContent);
+            }
+
+            this.broadcastFile = function () {
+                var name = localStorage.getItem('name');
+                var token = localStorage.getItem('token');
+                var finfo = new FileInfo(this.file);
+                if (this.url != null) {
+                    finfo.url = this.url;
+                }
+                chat.server.sendFile(finfo, name, token);
+            }
+
+            this.sendToAzure = function (rawData) {
+
+                showProgressBar();
+                var uploadBar = $('#upload-bar');
+
+                $.ajax({
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+
+                        // Upload progress
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 100;
+                                uploadBar.css("width", percentComplete + '%');
+                                uploadBar.text(Math.round(percentComplete) + '%');
+                            }
+                        }, false);
+
+                        $('#cancel-button').click(function () {
+                            if (xhr) {
+                                xhr.abort();
+                                showFileInput();
+                                swal("Your upload has been canceled", "", "error");
+                            }
+                        });
+
+                        return xhr;
+                    },
+                    url: this.url + this.sas,
+                    type: "PUT",
+                    data: rawData,
+                    processData: false,
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+                        xhr.setRequestHeader('x-ms-blob-content-type', that.file.type);
+                        xhr.setRequestHeader('x-ms-meta-uploadvia', 'ChatApp');
+                    },
+                    success: function (data, status) {
+                        that.broadcastFile();
+                        showFileInput();
+                    },
+                    error: function (xhr, desc, err) {
+                        console.log(desc);
+                        console.log(err);
+                    }
+                });
+            }
+        }
+
+        function showProgressBar() {
+            $('.file-input').hide();
+            $("#file-upload").prepend(
+                "<div class='text-center' id='progress-div'>" +
+                "<div class='progress progress-striped active'>" +
+                "<div class='progress-bar progress-bar-primary' id='upload-bar' role='progressbar'></div>" +
+                "</div>" +
+                "<button type='button' id='cancel-button' class='btn btn-danger'>Cancel upload</button>" +
+                "</div>"
+            );
+        }
+
+        function showFileInput() {
+            $('#progress-div').remove();
+            $('.file-input').fadeIn();
+            $('#myFile').val('');
+            filesender = null;
+        }
+
+        function getFileThumbnailHtml(file) {
+            return "<dt>" + file.sender + " sends file!" +
+                "</dt> <dd> <div class='file-thumbnail'>" +
+                "<div class='thumbnail-header'>" +
+                "<h5 class='file-name text-center'>" + file.name + "</h5></div>" +
+                "<div class='thumbnail-body'>" +
+                file.html +
+                "</div><div class='thumbnail-footer'><a href='" + file.url + "' class='btn btn-default pull-left download-button' download>" +
+                "<span class='glyphicon glyphicon-floppy-save'></span></a>" +
+                "<div class='text-right pull-right file-info'><small>Sent by:" + file.sender + "</small><br/><small>Size:" +
+                (file.size / mb).toFixed(2) +
+                " MB</small>" +
+                "</div></div></div></dd>";
+        }
+
+        function addToMessageBoard(html) {
+            $("#messages").append(html);
+
+            if (autoScrollingEnabled) {
+                messageBoard.scrollTop(messageBoard[0].scrollHeight);
+                preventOnScroll = true;
+            }
+        }
+
+    </script>
 </body>
 </html>

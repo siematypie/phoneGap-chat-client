@@ -1,11 +1,13 @@
-body {
-  background-image: url('../img/northernlights.jpg');
-    background-repeat: no-repeat ;
+﻿body {
+    background: url('../img/northernLights.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
 .jumbotron{
-     background:rgba(255,255,255,0.6);
+    background:rgba(255,255,255,0.6);
     margin-top: 20px;
 }
 
@@ -14,11 +16,11 @@ body {
     font-size: 2em;
 }
 /*#message-well {*/
-  /*height: 300px;*/
+/*height: 300px;*/
 /*}*/
 
 /*#logged-users{*/
-    /*height: 300px;*/
+/*height: 300px;*/
 /*}*/
 #message-board, #user-board{
     height: 300px;
@@ -30,9 +32,9 @@ body {
 }
 
 @media (max-width: 900px) {
-#user-board {
-height: 100px;
-}
+    #user-board {
+        height: 100px;
+    }
 }
 
 .scrollable{
@@ -84,7 +86,7 @@ dd{
 }
 
 #sendbutton, #btn-connect, #message-well, #nickname-well{
-  display: none;
+    display: none;
 }
 
 .col-centered{
@@ -101,8 +103,8 @@ span.icon-big{
 }
 .input-group.input-group-unstyled input.form-control {
     -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .input-group-unstyled .input-group-addon {
@@ -132,3 +134,45 @@ span.input-group-addon{
     margin-top: 0;
     padding-top: 2px;
 }
+
+/*.large {*/
+/*    max-width: 100%;*/
+/*}*/
+
+.img-responsive-height
+{
+    width: auto;
+    max-height: 400px
+}
+
+.img-responsive-width
+{
+    height: auto;
+    max-width: 100%;
+}
+
+.file-thumbnail {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #D4E8F4;
+    max-width: 50%;
+    min-width: 200px;
+    overflow: hidden;
+    padding: 10px;
+    display: inline-block;
+}
+
+img.enlarge-img {
+    cursor: pointer;
+}
+
+.thumbnail-footer {
+    margin-top: 6px
+}
+
+audio, video {
+    width: 100%;
+}
+
+

@@ -12,7 +12,6 @@
 
 
 <body>
-  <button id="download" type="button">download</button>
 
     <div class="jumbotron">
         <h1 class="text-center">The ultimate chat-app!</h1>
@@ -63,17 +62,18 @@
                             </div>
                             <div class="form-group" id="file-upload">
 
-                                <div class="input-group input-group-unstyled file-input">
-                                    <input type="file" class="form-control" id="myFile" placeholder="File">
-                                    <span class="input-group-addon" id="send-file">
-                                        <span class="input-group-addon">
-                                            <button type="button" class="btn btn-default">
-                                                <span class="glyphicon glyphicon-floppy-open icon-big pull-left">
-                                                </span>
-                                            </button>
-                                        </span>
-                                    </span>
+                                <div class="file-input">
+                                    <div class="btn-group btn-group-justified">
+                                        <a href="#" id="file-browser" class="btn btn-primary"><span class="glyphicon glyphicon-folder-open glyphicon-big"></span></a>
+                                        <a href="#"  id="photo" class="btn btn-primary"><span class="glyphicon glyphicon-camera glyphicon-big"></span></a>
+                                        <a href="#" id="video" class="btn btn-primary"><span class="glyphicon glyphicon-facetime-video glyphicon-big"></a>
+                                        <a href="#" id="audio" class="btn btn-primary"><span class="glyphicon glyphicon-record glyphicon-big"></a>
+                                    </div>
+                                    <input type="file" id="myFile"  style="display: none"/>
                                 </div>
+
+
+
                                 <p>
                                     <br> <a id="log_out" href='#' class='log-out'>Log out</a>
                                 </p>
@@ -101,7 +101,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div id="header-content">
                     </div>
-                    <h4 class="text-center" id="modal-title">file basjkdnaskdnaskjd</h4>
+                    <h4 class="text-center" id="modal-title"></h4>
                 </div>
                 <div class="modal-body text-center" id="modal-body">
 
@@ -131,37 +131,125 @@
 
     <script type="text/javascript">
        $.connection.hub.url = 'http://192.168.1.24:54522/signalr';
-       document.addEventListener("deviceready", hehe
-      ,true);
-      function hehe(){
-        //once device is ready
 
-    //     navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-    // destinationType: Camera.DestinationType.FILE_URI });
-    //
-    //     function onSuccess(imageURI) {
-    //         var image = document.getElementById('myImage');
-    //         image.src = imageURI;
-    //     }
-    //
-    //     function onFail(message) {
-    //         alert('Failed because: ' + message);
-    //     }
-      alert("HIHI" + download);
-      alert(console.log("DDD"));
-      alert(console.log(download));
-      $("#download").click(function (){
-        var fail = function (message) {
-           alert(message)
-        }
-        var success = function (data) {
-               console.log("succes");
-        }
-        cordova.plugins.DownloadManager.download("https://siematypiestorage.blob.core.windows.net/chatcontainer/Screenshot_20170826-233506.png", success, fail);
+       document.addEventListener("deviceready", onDeviceReady, true);
+      function onDeviceReady(){
+        //once device is ready
+      $("#photo").click(function(e){
+        stopDefault(e);
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+          destinationType: Camera.DestinationType.FILE_URI });
+
+          function onSuccess(imageURI) {
+            sendPhoneResource(imageURI);
+          }
+
+          function onFail(message) {
+              console.log('Failed because: ' + message);
+          }
+      })
+
+      $("#video").click(function(e){
+        stopDefault(e);
+        var options = { limit: 1, quality: 0 };
+
+        navigator.device.capture.captureVideo(
+          function(mediaFiles) {
+            sendPhoneResource(mediaFiles[0].fullPath);
+         }, captureError, options
+        );
+
+        var captureError = function(error) {
+            alert('Error code: ' + error.code, null, 'Capture Error');
+        };
 
       });
 
-    }
+      $("#audio").click(function(e){
+        stopDefault(e);
+        var options = { limit: 1};
+
+        navigator.device.capture.captureAudio(
+          function(mediaFiles) {
+            sendPhoneResource(mediaFiles[0].fullPath);
+         }, captureError, options
+        );
+
+        var captureError = function(error) {
+            alert('Error code: ' + error.code, null, 'Capture Error');
+        };
+      });
+
+      $('#messages').on('click', '.download-button', function () {
+            // swal("Your download has started", "", "success");
+            // swal({
+            //     type: 'success',
+            //     title: 'Your download has started!',
+            //     timer: 1500
+            // });
+            var fail = function (message) {
+               alert(message)
+            }
+            var success = function (data) {
+                   console.log("succes");
+            }
+            cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
+      });
+
+      $('#header-content').on('click', '.download-button', function () {
+            alert("HEEE");
+            var fail = function (message) {
+               alert(message)
+            }
+            var success = function (data) {
+                   console.log("succes");
+            }
+            cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
+      });
+
+      }
+
+
+
+      function sendPhoneResource(fullPath){
+        window.resolveLocalFileSystemURL(fullPath, function (fileEntry) {
+           fileEntry.file(function (file) {
+             filesender = new FileSender(file);
+             filesender.broadcastFile();
+           });
+         }, function (error) {
+           console.log(error)
+         });
+      }
+
+      $("#file-browser").click(function(e){
+        stopDefault(e);
+        $("#myFile").click();
+      })
+
+      $("#myFile").change(function(){
+          var files = this.files
+          if (files.length === 1){
+            filesender = new FileSender(files[0]);
+            filesender.broadcastFile();
+          }
+      });
+
+
+
+
+      // $("#download").click(function (){
+      //   var fail = function (message) {
+      //      alert(message)
+      //   }
+      //   var success = function (data) {
+      //          console.log("succes");
+      //   }
+      //   cordova.plugins.DownloadManager.download("https://siematypiestorage.blob.core.windows.net/chatcontainer/Screenshot_20170826-233506.png", success, fail);
+      //
+      // });
+
+
         var mb = 1048576;
         var map = {
             "<3": "\u2764\uFE0F",
@@ -202,7 +290,6 @@
             }
         };
 
-
         $('#btn-connect').click(function () {
             var username = $('#nickname').val();
             var identity = new Identity();
@@ -212,8 +299,7 @@
         });
 
         $("#message-form").submit(function (e) {
-            e.preventDefault && e.preventDefault();
-            e.stopPropagation && e.stopPropagation();
+            stopDefault(e)
         });
 
         $('#nickname').on('keyup',
@@ -232,9 +318,9 @@
 
         $('#messages').on('click', 'img.enlarge-img', function () {
             var img = $(this).clone();
-            var link = "<a href=" +
+            var link = "<a href='" +
                 img.attr('src') +
-                " class='btn btn-default pull-left download-button' download>" +
+                "' class='btn btn-default pull-left download-button' download>" +
                 "<span class='glyphicon glyphicon-floppy-save'></span>" +
                 "</a>";
             $("#modal-title").html($(img).data("name"));
@@ -400,17 +486,16 @@
                 chat.server.send($('#myMessage').val(), new Identity());
                 autoScrollingEnabled = true;
                 $('#myMessage').val('').focus();
-                $(this).hide();
             }
 
             $('#log_out').click(function (e) {
-                e.preventDefault && e.preventDefault();
-                e.stopPropagation && e.stopPropagation();
+                stopDefault(e);
                 chat.server.logOut()
             });
 
             $('#sendbutton').click(function () {
                 sendMessage();
+                $(this).hide();
             });
 
             $('#send-file').click(function () {
@@ -426,8 +511,7 @@
             $('#myMessage').on('keyup', function (e) {
 
                 if (e.which === 13) {
-                    e.preventDefault && e.preventDefault();
-                    e.stopPropagation && e.stopPropagation();
+                    stopDefault(e);
                     if ($('#myMessage').val()) {
                         sendMessage();
                     }
@@ -528,6 +612,7 @@
             var that = this;
             this.file = file;
             this.reader = new FileReader();
+            this.fileContent = file.slice(0, this.file.size - 1);
             this.url = null;
             this.sas = null;
             this.reader.onloadend = function (evt) {
@@ -540,8 +625,7 @@
             this.startSending = function (url, sastoken) {
                 this.url = url;
                 this.sas = sastoken;
-                var fileContent = that.file.slice(0, this.file.size - 1);
-                this.reader.readAsArrayBuffer(fileContent);
+                this.reader.readAsArrayBuffer(this.fileContent);
             }
 
             this.broadcastFile = function () {
@@ -644,6 +728,11 @@
                 messageBoard.scrollTop(messageBoard[0].scrollHeight);
                 preventOnScroll = true;
             }
+        }
+
+        function stopDefault(e){
+          e.preventDefault && e.preventDefault();
+          e.stopPropagation && e.stopPropagation();
         }
 
     </script>

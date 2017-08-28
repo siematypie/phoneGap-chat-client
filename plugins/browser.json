@@ -15,7 +15,17 @@
         },
         "cordova-plugin-downloadmanager": {
             "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "amazing-chat"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "amazing-chat"
+        }
+    }
 }

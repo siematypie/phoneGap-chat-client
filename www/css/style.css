@@ -1,9 +1,10 @@
-﻿body {
+body{
     background: url('../img/northernLights.jpeg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 600px;
 }
 
 .jumbotron{
@@ -156,7 +157,7 @@ span.input-group-addon{
     -moz-border-radius: 4px;
     border-radius: 4px;
     background-color: #D4E8F4;
-    max-width: 50%;
+    max-width: 80%;
     min-width: 200px;
     overflow: hidden;
     padding: 10px;
@@ -171,8 +172,10 @@ img.enlarge-img {
     margin-top: 6px
 }
 
+.glyphicon-big {
+  font-size:1.5em;
+}
+
 audio, video {
     width: 100%;
 }
-
-

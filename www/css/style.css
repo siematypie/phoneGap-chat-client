@@ -179,3 +179,8 @@ img.enlarge-img {
 audio, video {
     width: 100%;
 }
+
+.date {
+    font-size: 0.7em;
+    color: darkgrey;
+}

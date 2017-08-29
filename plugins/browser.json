@@ -18,6 +18,9 @@
         },
         "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "amazing-chat"
         }
     },
     "dependent_plugins": {

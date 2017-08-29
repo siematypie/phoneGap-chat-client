@@ -44,6 +44,7 @@
                     <div class="col-md-9">
 
                         <p>Message board</p>
+                        <input type="hidden" value="" id="oldest-message" />
                         <div id="message-board" class="scrollable">
                             <dl id="messages"></dl>
                         </div>
@@ -125,91 +126,92 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.signalR-2.2.2.min.js"></script>
     <!-- <script src="~/signalr/hubs"></script> -->
-    <script src="http://192.168.1.24:54522/signalr/hubs"></script>
+    <script src="http://theultimatechat.azurewebsites.net/signalr/hubs"></script>
 
     <script src="js/sweetalert.min.js"></script>
 
     <script type="text/javascript">
-       $.connection.hub.url = 'http://192.168.1.24:54522/signalr';
+       $.connection.hub.url = 'http://theultimatechat.azurewebsites.net/signalr';
 
        document.addEventListener("deviceready", onDeviceReady, true);
       function onDeviceReady(){
         //once device is ready
-      $("#photo").click(function(e){
-        stopDefault(e);
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-          destinationType: Camera.DestinationType.FILE_URI });
+            $("#photo").click(function(e){
+              stopDefault(e);
+              navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI });
 
-          function onSuccess(imageURI) {
-            sendPhoneResource(imageURI);
-          }
+                function onSuccess(imageURI) {
+                  sendPhoneResource(imageURI);
+                }
 
-          function onFail(message) {
-              console.log('Failed because: ' + message);
-          }
-      })
+                function onFail(message) {
+                    console.log('Failed because: ' + message);
+                }
+            });
 
-      $("#video").click(function(e){
-        stopDefault(e);
-        var options = { limit: 1, quality: 0 };
+            $("#video").click(function(e){
+              stopDefault(e);
+              var options = { limit: 1, quality: 0 };
 
-        navigator.device.capture.captureVideo(
-          function(mediaFiles) {
-            sendPhoneResource(mediaFiles[0].fullPath);
-         }, captureError, options
-        );
+              navigator.device.capture.captureVideo(
+                function(mediaFiles) {
+                  sendPhoneResource(mediaFiles[0].fullPath);
+               }, captureError, options
+              );
 
-        var captureError = function(error) {
-            alert('Error code: ' + error.code, null, 'Capture Error');
-        };
+              var captureError = function(error) {
+                  alert('Error code: ' + error.code, null, 'Capture Error');
+              };
 
-      });
+            });
 
-      $("#audio").click(function(e){
-        stopDefault(e);
-        var options = { limit: 1};
+            $("#audio").click(function(e){
+              stopDefault(e);
+              var options = { limit: 1};
 
-        navigator.device.capture.captureAudio(
-          function(mediaFiles) {
-            sendPhoneResource(mediaFiles[0].fullPath);
-         }, captureError, options
-        );
+              navigator.device.capture.captureAudio(
+                function(mediaFiles) {
+                  sendPhoneResource(mediaFiles[0].fullPath);
+               }, captureError, options
+              );
 
-        var captureError = function(error) {
-            alert('Error code: ' + error.code, null, 'Capture Error');
-        };
-      });
+              var captureError = function(error) {
+                  alert('Error code: ' + error.code, null, 'Capture Error');
+              };
+            });
 
-      $('#messages').on('click', '.download-button', function () {
-            // swal("Your download has started", "", "success");
-            // swal({
-            //     type: 'success',
-            //     title: 'Your download has started!',
-            //     timer: 1500
-            // });
-            var fail = function (message) {
-               alert(message)
-            }
-            var success = function (data) {
-                   console.log("succes");
-            }
-            cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
-      });
+            $('#messages').on('click', '.download-button', function () {
 
-      $('#header-content').on('click', '.download-button', function () {
-            alert("HEEE");
-            var fail = function (message) {
-               alert(message)
-            }
-            var success = function (data) {
-                   console.log("succes");
-            }
-            cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
-      });
+                  var fail = function (message) {
+                    swal({
+                        type: 'error',
+                        title: 'Error!',
+
+                        timer: 1500
+                    });
+                  }
+                  var success = function (data) {
+                    swal({
+                        type: 'success',
+                        title: 'Your download has started!',
+                        timer: 1500
+                    });
+                  }
+                  cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
+            });
+
+            $('#header-content').on('click', '.download-button', function () {
+                  var fail = function (message) {
+                     alert(message)
+                  }
+                  var success = function (data) {
+                         console.log("succes");
+                  }
+                  cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
+            });
 
       }
-
-
 
       function sendPhoneResource(fullPath){
         window.resolveLocalFileSystemURL(fullPath, function (fileEntry) {
@@ -234,20 +236,6 @@
             filesender.broadcastFile();
           }
       });
-
-
-
-
-      // $("#download").click(function (){
-      //   var fail = function (message) {
-      //      alert(message)
-      //   }
-      //   var success = function (data) {
-      //          console.log("succes");
-      //   }
-      //   cordova.plugins.DownloadManager.download("https://siematypiestorage.blob.core.windows.net/chatcontainer/Screenshot_20170826-233506.png", success, fail);
-      //
-      // });
 
 
         var mb = 1048576;
@@ -279,6 +267,9 @@
         var preventOnScroll = false;
         var autoScrollingEnabled = true;
         var $currentWindow = $();
+        var previousMessageBatchRecieved = false;
+        var messageBatchLength = 15;
+
 
         $.fn.showAsCurrent = function () {
             if ($(this).selector !== $currentWindow.selector) {
@@ -353,6 +344,12 @@
 
 
         messageBoard.scroll(function () {
+              if ($(this).scrollTop() < 1 && previousMessageBatchRecieved) {
+                 var oldestMessageDate = $("#oldest-message").val();
+                 chat.server.getOlderMessages(oldestMessageDate, new Identity());
+                 previousMessageBatchRecieved = false;
+             }
+
             if (preventOnScroll) {
                 preventOnScroll = false;
                 return;
@@ -407,7 +404,6 @@
             }
             $('#message-well').showAsCurrent();
             usernameUpdate(userlist);
-            $('#messages').html("");
 
         };
 
@@ -420,10 +416,18 @@
         }
 
         chat.client.enters = function (name) {
-            $("#messages").append('<dt><i>' + name + ' joins the conversation</i></dt><dl></dl>');
+            addToMessageBoard('<dt><i>' + name + ' joins the conversation</i></dt><dl></dl>');
+        }
+
+        chat.client.disconnected = function (name) {
+            //Calls when someone leaves the page
+
+            addToMessageBoard('<dt><i>' + name + ' leaves the conversation</i></dt><dl></dl>');
+            $('#logged-users li').remove(":contains('" + name + "')");
         }
 
         chat.client.broadcastMessage = function (name, message) {
+            var date = new Date;
             var msg = "<dt>" + name + "</dt><dd>" + message + "<dd>";
             addToMessageBoard(msg);
         };
@@ -469,11 +473,54 @@
             swal("File too big!", "Maximum filesize is " + parseInt(fileSizeInBytes) / mb + "MB", "error");
         }
 
-        chat.client.disconnected = function (name) {
-            //Calls when someone leaves the page
+        chat.client.lastMessages = function (messages) {
+            $("#oldest-message").val(messages[messages.length - 1].SentTime);
+            $('#messages').html("");
+            var messageHtml = getMessagesHtml(messages);
+            $("#messages").prepend(messageHtml);
+            setTimeout(function () {
+                messageBoard.scrollTop(messageBoard[0].scrollHeight);
+                previousMessageBatchRecieved = true;
+            }, 100);
 
-            $("#messages").append('<dt><i>' + name + ' leaves the conversation</i></dt><dl></dl>');
-            $('#logged-users li').remove(":contains('" + name + "')");
+        }
+
+        chat.client.olderMessages = function (messages) {
+            $("#oldest-message").val(messages[messages.length - 1].SentTime);
+
+            var lastmsg = $('dt:first');
+            var messageHtml = getMessagesHtml(messages);
+            $("#messages").prepend(messageHtml);
+            $(messageBoard).scrollTop(lastmsg.position().top);
+            if (messages.length === messageBatchLength) {
+                previousMessageBatchRecieved = true;
+            }
+
+        }
+
+        function getMessagesHtml(messagesObjs) {
+            var messagesHtml = "";
+            var today = new Date();
+            for (var i = messagesObjs.length - 1; i >= 0; i--) {
+                var message = messagesObjs[i];
+                var date = dateFromJSON(message.SentTime);
+                var hours = date.getHours() + 2
+                date.setHours(hours);
+                var time = date.getStringTime();
+                messagesHtml += "<dt class='pull-right date'>" + ((DatesAreTheSame(date, today)) ? time: date.getStringDate() + " " + time) + "</dt>";
+                if (message.Size === 0) {
+                    messagesHtml += "<dt>" + message.UserName + "</dt><dd>" + message.Text + "<dd>";
+                } else {
+                    message.url = message.Text;
+                    message.sender = message.UserName;
+                    message.name = message.Text.split("/").pop();
+                    message.size = message.Size;
+                    message.html = "<img src='img/fileicon.png' width='150'/>";
+                    messagesHtml += getFileThumbnailHtml(message);
+                }
+
+            };
+            return messagesHtml;
         }
 
 
@@ -561,17 +608,6 @@
                         pageStart();
                     });
                 });
-
-                //            setTimeout(function () {
-                //                alert("RECONECTIN'");
-                //                $.connection.hub.start().done(function () {
-                //                    swal({
-                //                        title: 'Connected!',
-                //                        timer: 500
-                //                    });
-                //                    pageStart();
-                //                });
-                //            }, 6000);
             }
         });
 
@@ -623,12 +659,15 @@
             }
 
             this.startSending = function (url, sastoken) {
+
+                showProgressBar();
                 this.url = url;
                 this.sas = sastoken;
                 this.reader.readAsArrayBuffer(this.fileContent);
             }
 
             this.broadcastFile = function () {
+                autoScrollingEnabled = true;
                 var name = localStorage.getItem('name');
                 var token = localStorage.getItem('token');
                 var finfo = new FileInfo(this.file);
@@ -640,7 +679,6 @@
 
             this.sendToAzure = function (rawData) {
 
-                showProgressBar();
                 var uploadBar = $('#upload-bar');
 
                 $.ajax({
@@ -722,7 +760,8 @@
         }
 
         function addToMessageBoard(html) {
-            $("#messages").append(html);
+            var dateStamp = "<dt class='pull-right date'>" + new Date().getStringTime() + "</dt>";
+            $("#messages").append(dateStamp + html);
 
             if (autoScrollingEnabled) {
                 messageBoard.scrollTop(messageBoard[0].scrollHeight);
@@ -733,6 +772,26 @@
         function stopDefault(e){
           e.preventDefault && e.preventDefault();
           e.stopPropagation && e.stopPropagation();
+        }
+
+      Date.prototype.getStringTime = function() {
+          var hours = this.getHours();
+          var minutes = this.getMinutes();
+          return (hours < 10 ? "0" + hours: hours) + ":" + (minutes < 10 ? "0" + minutes: minutes);
+      }
+
+      Date.prototype.getStringDate = function () {
+          var day = this.getDate(), month = this.getMonth() + 1, year = this.getFullYear();
+          return (day < 10 ? "0" + day: day) + "-" + (month < 10 ? "0" + month: month) + "-" + year;
+      }
+
+      function dateFromJSON(str) {
+            var m = str.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+):(\d+)/);
+            return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+        }
+
+        function DatesAreTheSame(date1, date2) {
+            return date1.setHours(0, 0, 0, 0) === date2.setHours(0, 0, 0, 0);
         }
 
     </script>

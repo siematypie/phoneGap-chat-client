@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager",
+        "spec": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:vasani-arpit/cordova-plugin-downloadmanager.git",
+          "sshUrl": "git+ssh://git@github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+          "httpsUrl": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+          "gitUrl": "git://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+          "shortcut": "github:vasani-arpit/cordova-plugin-downloadmanager",
+          "directUrl": "https://raw.githubusercontent.com/vasani-arpit/cordova-plugin-downloadmanager/master/package.json"
+        }
+      },
+      "C:\\Users\\mkkc1\\Desktop\\phonegapapp\\phoneGap-chat-client\\node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+  "_id": "cordova-plugin-downloadmanager@0.0.1",
+  "_inCache": true,
+  "_location": "/cordova-plugin-downloadmanager",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager",
+    "spec": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:vasani-arpit/cordova-plugin-downloadmanager.git",
+      "sshUrl": "git+ssh://git@github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+      "httpsUrl": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+      "gitUrl": "git://github.com/vasani-arpit/cordova-plugin-downloadmanager.git",
+      "shortcut": "github:vasani-arpit/cordova-plugin-downloadmanager",
+      "directUrl": "https://raw.githubusercontent.com/vasani-arpit/cordova-plugin-downloadmanager/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git#c29c2c7c53eaa4ca861b471fb8351ba6fb0029c3",
+  "_shasum": "9343eea9169a2d84257ce3a9d72c42fcbbbddef0",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager",
+  "_where": "C:\\Users\\mkkc1\\Desktop\\phonegapapp\\phoneGap-chat-client\\node_modules",
+  "author": {
+    "name": "Arpit Vasani"
+  },
+  "bugs": {
+    "url": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-downloadmanager",
+    "platforms": []
+  },
+  "dependencies": {},
+  "description": "A plugin to start system's default download manager.",
+  "devDependencies": {},
+  "gitHead": "c29c2c7c53eaa4ca861b471fb8351ba6fb0029c3",
+  "homepage": "https://github.com/vasani-arpit/cordova-plugin-downloadmanager#readme",
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "license": "ISC",
+  "name": "cordova-plugin-downloadmanager",
+  "optionalDependencies": {},
+  "readme": "# cordova-plugin-downloadmanager\r\nA Cordova plugin to download file in system's default download manager\r\n\r\n## Supported Platforms\r\n\r\n - Android (SDK >= 11)\r\n\r\n ## Installation\r\n\r\n ```\r\n cordova plugin add https://github.com/vasani-arpit/cordova-plugin-downloadmanager\r\n ```\r\n\r\n ## How to Use \r\n\r\n ```\r\n //once device is ready\r\nvar fail = function (message) {    \r\n    alert(message)\r\n}\r\nvar success = function (data) {\r\n        console.log(\"succes\");\r\n}\r\ncordova.plugins.DownloadManager.download(\"Your URL to download\", success, fail);\r\n ```\r\n\r\n## Result\r\n\r\n![screenshot](./screenshot/downloadplugin.gif)\r\n\r\n## Contributing\r\n\r\n1. Fork it\r\n2. Create your feature branch (`git checkout -b my-new-feature`)\r\n3. Commit your changes (`git commit -am 'Add some feature'`)\r\n4. Push to the branch (`git push origin my-new-feature`)\r\n5. Create new Pull Request\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasani-arpit/cordova-plugin-downloadmanager.git"
+  },
+  "version": "0.0.1"
+}

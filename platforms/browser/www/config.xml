@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="amazing-chat" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
+    <name>Ultimate chat app</name>
+    <description>Amazing chat app</description>
+    <author>
+		Michał Kobiec and Anita Pietrzyk
+	</author>
+    <gap:plugin name="cordova-plugin-camera" source="npm" version="2.4.1" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" />
+    <access launch-external="yes" origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+</widget>

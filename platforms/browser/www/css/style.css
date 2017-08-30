@@ -184,3 +184,7 @@ audio, video {
     font-size: 0.7em;
     color: darkgrey;
 }
+
+.hidden {
+    display: none;
+}

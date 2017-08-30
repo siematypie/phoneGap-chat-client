@@ -7,7 +7,7 @@
     <title>The ultimate chat</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" />
-    <link href="css/sweetalert.css" rel="stylesheet" />
+    <link href="css/sweetalert2.min.css" rel="stylesheet" />
 </head>
 
 
@@ -43,7 +43,13 @@
                 <div class="row">
                     <div class="col-md-9">
 
-                        <p>Message board</p>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <p id="current-room" style="">Message board</p>
+                                <a href="#" id="room-options">Rooms<span class="glyphicon glyphicon-cog"></span></a>
+                            </div>
+                        </div>
                         <input type="hidden" value="" id="oldest-message" />
                         <div id="message-board" class="scrollable">
                             <dl id="messages"></dl>
@@ -119,6 +125,13 @@
 
         </div>
     </div>
+    <div class="hidden">
+      <div class="list-group list-rooms scrollable" style="max-height: 300px">
+          <a href="#" class="list-group-item active">General</a>
+          <a href="#" class="list-group-item change-room">Funny</a>
+      </div>
+    </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="DownloadManager.js"></script>
 
@@ -126,12 +139,18 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.signalR-2.2.2.min.js"></script>
     <!-- <script src="~/signalr/hubs"></script> -->
-    <script src="http://theultimatechat.azurewebsites.net/signalr/hubs"></script>
+    <script src="http://192.168.1.24:54522/signalr/hubs"></script>
 
-    <script src="js/sweetalert.min.js"></script>
+    <!-- <script src="http://theultimatechat.azurewebsites.net/signalr/hubs"></script> -->
+
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/core.js"></script>
+
 
     <script type="text/javascript">
-       $.connection.hub.url = 'http://theultimatechat.azurewebsites.net/signalr';
+      //  $.connection.hub.url = 'http://theultimatechat.azurewebsites.net/signalr';
+       $.connection.hub.url = 'http://192.168.1.24:54522/signalr';
+
 
        document.addEventListener("deviceready", onDeviceReady, true);
       function onDeviceReady(){
@@ -474,9 +493,12 @@
         }
 
         chat.client.lastMessages = function (messages) {
-            $("#oldest-message").val(messages[messages.length - 1].SentTime);
-            $('#messages').html("");
-            var messageHtml = getMessagesHtml(messages);
+          $('#messages').html("");
+           if (messages.length === 0) {
+               return;
+           }
+           $("#oldest-message").val(messages[messages.length - 1].SentTime);
+           var messageHtml = getMessagesHtml(messages);
             $("#messages").prepend(messageHtml);
             setTimeout(function () {
                 messageBoard.scrollTop(messageBoard[0].scrollHeight);
@@ -486,6 +508,9 @@
         }
 
         chat.client.olderMessages = function (messages) {
+            if (messages.length === 0) {
+                return;
+            }
             $("#oldest-message").val(messages[messages.length - 1].SentTime);
 
             var lastmsg = $('dt:first');
@@ -594,19 +619,21 @@
                     showCancelButton: false,
                     showLoaderOnConfirm: true,
                     allowOutsideClick: false,
-                    closeOnConfirm: false,
                     confirmButtonColor: '#F27474',
-                    confirmButtonText: 'Reconnect me!'
-
-                }, function (isConfirm) {
-                    swal("Reconnecting...", "", "warning");
-                    $.connection.hub.start().done(function () {
-                        swal({
-                            title: 'Connected!',
-                            timer: 500
-                        });
-                        pageStart();
-                    });
+                    confirmButtonText: 'Reconnect me!',
+                    preConfirm: function() {
+                        return new Promise(function(resolve) {
+                            swal.insertQueueStep("Reconnecting...") ;
+                            $.connection.hub.start().done(function() {
+                                swal({
+                                    title: 'Connected!',
+                                    timer: 500,
+                                    type: "success"
+                                });
+                                pageStart();
+                            });
+                          });
+                    }
                 });
             }
         });

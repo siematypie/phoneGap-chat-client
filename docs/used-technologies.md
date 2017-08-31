@@ -32,3 +32,5 @@
 ## Hosting services:
   * Azure app service
   * Azure blob storage
+
+[back](./)

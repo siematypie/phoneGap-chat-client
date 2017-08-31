@@ -1,4 +1,4 @@
-[My page](/demo)
+[My page](/demo.html)
 
 ## Synopsis
 

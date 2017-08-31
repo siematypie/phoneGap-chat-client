@@ -1,7 +1,7 @@
 
 #### Michał Kobiec and Anita Pietrzyk proudly presents:
 # The ultimate chat app!
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
+![](https://raw.githubusercontent.com/siematypie/phoneGap-chat-client/master/docs/images/main-picture.png)
 a simple application which keeps you **IN TOUCH**
 with friends, by chatting in private or public rooms
 with possibility of exchanging pictures, audio files, videos and other files!

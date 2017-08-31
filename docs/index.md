@@ -12,7 +12,7 @@ with possibility of exchanging pictures, audio files, videos and other files!
   So you can chat with your friends using **both computer and your phone!** 
 
 
-[Phonegap app user guide](user-guide)
+[Phonegap app user guide](user-guide).
 [Used technologies](used-technologies)
 
 

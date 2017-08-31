@@ -235,25 +235,6 @@
                 cordova.InAppBrowser.open($(this).attr('href'), '_blank', 'location=yes');
             });
 
-            $('#messages').on('click', '.email-link', function () {
-              cordova.plugins.email.isAvailable(
-                function (isAvailable) {
-                  alert(isAvailable);
-                }
-                );
-              cordova.plugins.email.open({
-                to:      'max@mustermann.de',
-                cc:      'erika@mustermann.de',
-                bcc:     ['john@doe.com', 'jane@doe.com'],
-                subject: 'Greetings',
-                body:    'How are you? Nice greetings from Leipzig'
-            });
-
-                alert($(this).attr('href'));
-
-
-            });
-
       }
 
       function sendPhoneResource(fullPath){
@@ -313,6 +294,8 @@
         var previousMessageBatchRecieved = false;
         var messageBatchLength = 15;
         var anchormeConfig = {
+          emails:false,
+          ips:false,
            attributes:
            [
                {

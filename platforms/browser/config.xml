@@ -13,5 +13,4 @@
     <access launch-external="yes" origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <gap:plugin name="cordova-plugin-email-composer" source="npm" version="1.2.6" />
 </widget>

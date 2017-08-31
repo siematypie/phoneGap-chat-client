@@ -1,4 +1,4 @@
-[My page](/demo.html)
+[My page](/phoneGap-chat-client/demo)
 
 ## Synopsis
 

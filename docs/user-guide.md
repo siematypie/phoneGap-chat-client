@@ -26,7 +26,7 @@ Image messages:
 
 Video messages:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true width="250" />
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true" width="250" />
 
 Audio messages
 

@@ -55,7 +55,7 @@ As previously said, Ultimate chat-app has more option available, than just sendi
 
 After you choose file, upload progress bar will appear on the screen:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/progress-bar.png?raw=true"/>
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/progressbar.png?raw=true"/>
 
 > You can **cancel** in-progress upload by pressing cancel button
 

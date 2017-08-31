@@ -9,7 +9,7 @@ You can scan with your phone qr-code below:
 ## 2. Log in!
 Just type in your name, hit enter or press button that will appear and, if username is not already in use, you're in!:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/options.png?raw=true"/>
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/login.png?raw=true"/>
 
 ## 3. Say something!
 After logging in, you will be redirected to public room, which is accessible and visible for everybody who uses application. Basic view:
@@ -55,7 +55,7 @@ As previously said, Ultimate chat-app has more option available, then just sendi
 The Ultimate chat-app gives you opportunity to use different rooms:
 To change or create room choose the “Rooms” option (10.) Following window will pop up:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/room-opts.png?raw=true"/>
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/romm-opts.png?raw=true"/>
 
 If you want to create new room all you need to do is to choose “Add new room” option, name the room and decide if you want to keep the room as public or if you prefer to make it private.
 If you choose first option leave “Room Password” field empty, If you would like to chat only with selected people, put the password and share the credential of the Room with them.

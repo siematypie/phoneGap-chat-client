@@ -232,22 +232,25 @@
 
             $('#messages').on('click', '.link', function (e) {
                 stopDefault(e);
-                alert($(this).attr('href'))
                 cordova.InAppBrowser.open($(this).attr('href'), '_blank', 'location=yes');
             });
 
             $('#messages').on('click', '.email-link', function () {
-                alert($(this).attr('href'))
-                cordova.plugins.email.open({
-                  to:      'max@mustermann.de',
-                  cc:      'erika@mustermann.de',
-                  bcc:     ['john@doe.com', 'jane@doe.com'],
-                  subject: 'Greetings',
-                  body:    'How are you? Nice greetings from Leipzig'
-              });
-                cordova.plugins.email.isAvailable(function (hasAccount) {
-                  alert(hasAccount);
-                });
+              cordova.plugins.email.isAvailable(
+                function (isAvailable) {
+                  alert(isAvailable);
+                }
+                );
+              cordova.plugins.email.open({
+                to:      'max@mustermann.de',
+                cc:      'erika@mustermann.de',
+                bcc:     ['john@doe.com', 'jane@doe.com'],
+                subject: 'Greetings',
+                body:    'How are you? Nice greetings from Leipzig'
+            });
+
+                alert($(this).attr('href'));
+
 
             });
 

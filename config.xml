@@ -62,5 +62,6 @@
         <icon height="50" src="res/icons/windows8/storelogo.png" width="50" />
     </platform>
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
-    <plugin name="cordova-plugin-email-composer" spec="~0.8.7" />
+    <gap:plugin name="cordova-plugin-email-composer" version="1.2.6" source="npm" />
+
 </widget>

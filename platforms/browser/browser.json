@@ -21,6 +21,10 @@
                         {
                             "xml": "<feature name=\"EmailComposer\"><param name=\"browser-package\" value=\"de.appplant.cordova.emailcomposer.EmailComposer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"browser-package\" value=\"de.martinreinhardt.cordova.plugins.email.EmailComposer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -53,6 +57,9 @@
             "PACKAGE_NAME": "amazing-chat"
         },
         "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-email": {
             "PACKAGE_NAME": "amazing-chat"
         }
     },
@@ -386,6 +393,21 @@
             "id": "cordova-plugin-email-composer.EmailComposerProxy",
             "pluginId": "cordova-plugin-email-composer",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-email/www/email_composer.js",
+            "id": "cordova-plugin-email.EmailComposer",
+            "pluginId": "cordova-plugin-email",
+            "clobbers": [
+                "cordova.plugins.email",
+                "plugin.email"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-email/src/browser/EmailComposerProxy.js",
+            "id": "cordova-plugin-email.EmailComposerProxy",
+            "pluginId": "cordova-plugin-email",
+            "runs": true
         }
     ],
     "plugin_metadata": {
@@ -397,6 +419,7 @@
         "cordova-plugin-media-capture": "1.4.3",
         "cordova-plugin-splashscreen": "4.0.3",
         "cordova-plugin-inappbrowser": "1.7.1",
-        "cordova-plugin-email-composer": "0.8.7"
+        "cordova-plugin-email-composer": "0.8.7",
+        "cordova-plugin-email": "1.2.6"
     }
 }

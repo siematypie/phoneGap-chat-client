@@ -144,6 +144,8 @@
 
     <script src="js/sweetalert2.min.js"></script>
     <script src="js/core.js"></script>
+    <script src="js/anchorme.min.js"></script>
+
 
 
     <script type="text/javascript">
@@ -228,6 +230,11 @@
                   cordova.plugins.DownloadManager.download($(this).attr("href"), success, fail);
             });
 
+            $('#messages').on('click', '.link', function (e) {
+                stopDefault(e);
+                cordova.InAppBrowser.open($(this).attr('href'), '_blank', 'location=yes');
+            });
+
       }
 
       function sendPhoneResource(fullPath){
@@ -286,6 +293,22 @@
         var $currentWindow = $();
         var previousMessageBatchRecieved = false;
         var messageBatchLength = 15;
+        var anchormeConfig = {
+          emails:false,
+          ips:false,
+           attributes:
+           [
+               {
+                   name: "target",
+                   value: "_blank"
+               },
+               function(urlObj) {
+                   if(urlObj.protocol === "mailto:") return {name:"class", value:"email-link"};
+                   return {name:"class", value:"link"}
+                 }
+             ]
+         }
+
 
 
         $.fn.showAsCurrent = function () {
@@ -444,9 +467,9 @@
         }
 
         chat.client.broadcastMessage = function (name, message) {
-            var date = new Date;
-            var msg = "<dt>" + name + "</dt><dd>" + message + "<dd>";
-            addToMessageBoard(msg);
+          var msg = anchorme(message,anchormeConfig);
+          var html = "<dt>" + name + "</dt><dd>" + msg + "<dd>";
+          addToMessageBoard(html);
         };
 
         chat.client.broadcastImage = function (fileInfo) {
@@ -496,7 +519,7 @@
                return;
            }
            $("#oldest-message").val(messages[messages.length - 1].SentTime);
-           var messageHtml = getMessagesHtml(messages);
+           var messageHtml = anchorme(getMessagesHtml(messages), anchormeConfig);
             $("#messages").prepend(messageHtml);
             setTimeout(function () {
                 messageBoard.scrollTop(messageBoard[0].scrollHeight);
@@ -512,7 +535,7 @@
             $("#oldest-message").val(messages[messages.length - 1].SentTime);
 
             var lastmsg = $('dt:first');
-            var messageHtml = getMessagesHtml(messages);
+            var messageHtml = anchorme(getMessagesHtml(messages), anchormeConfig);
             $("#messages").prepend(messageHtml);
             $(messageBoard).scrollTop(lastmsg.position().top);
             if (messages.length === messageBatchLength) {

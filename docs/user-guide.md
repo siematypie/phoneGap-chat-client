@@ -62,9 +62,17 @@ If you choose first option leave “Room Password” field empty, If you would l
 Private room gives you an option to invite users to the room. In order to do that:
 1. Click “Rooms”(10.)
 2. Select “Invite users”
-3. Enter the user nickname you would like to invite and room password
-4. Keep in mind that the user you selected will get notification with an option to accept or decline your invitation.
-Are you bored of the room? You can change it in “Rooms” button. If you click “Choose room” tab you will see the list of available rooms. Some of them has a locker icon next to the name. It means that the room is private and you will need a password to enter it, if there is no locker, after selecting the room you will be redirected directly to the room.
+3. Enter the user nickname you would like to invite and room password:
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/inviting.png?raw=true"/>
+
+4. Keep in mind that the user you selected will get notification with an option to accept or decline your invitation.:
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/invitation.png?raw=true"/>
+
+5. Are you bored of the room? You can change it in “Rooms” button. If you click “Choose room” tab you will see the list of available rooms. Some of them has a locker icon next to the name. It means that the room is private and you will need a password to enter it, if there is no locker, after selecting the room you will be redirected directly to the room.
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/rooms.png?raw=true"/>
 
 ### Users
 On the bottom side, in “Users logged in” you can see all your friends who are currently logged in to the Ultimate chat-app

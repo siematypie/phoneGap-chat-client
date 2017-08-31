@@ -1,4 +1,4 @@
-[My page](/docs/page.md)
+[My page](page.md)
 
 ## Synopsis
 

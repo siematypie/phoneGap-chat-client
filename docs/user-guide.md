@@ -25,9 +25,12 @@ Text messages:
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/text.png?raw=true" width="300"/>
 
 > All urls in messages are automaticly recognized and transformed to links, so you can immediately visit mentioned site!
+
 Image messages:
 
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" width="300"/>
+
+> Click on the image to enlarge it!
 
 Video messages:
 
@@ -40,6 +43,8 @@ Audio messages
 * File messages
 
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/file.png?raw=true" width="300"/>
+
+    All messages have download button (11) so you can **download** the file directly to your device!
 
 >You joined conversation later? Don’t worry you will not miss single message, all messages are archived and visible for you even if you joined the room later. To see them, you can scroll up using the toolbar on the right side of the field. **Warning** In custom rooms, all messages are deleted when last person leave!
 

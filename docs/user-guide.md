@@ -21,14 +21,16 @@ All messages sent by users from current room appears in the message board(1). Th
 Text messages
 
 Image messages:
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" />
 
-* Video messages:
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true" />
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" width="250"/>
 
+Video messages:
 
-* Audio messages
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/audio.png?raw=true" />
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true width="250" />
+
+Audio messages
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/audio.png?raw=true" width="250"/>
 
 * File messages
 

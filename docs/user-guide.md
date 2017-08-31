@@ -22,15 +22,15 @@ Text messages
 
 Image messages:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" width="250"/>
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" width="300"/>
 
 Video messages:
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true" width="250" />
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/video.png?raw=true" width="300" />
 
 Audio messages
 
-<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/audio.png?raw=true" width="250"/>
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/audio.png?raw=true" width="300"/>
 
 * File messages
 

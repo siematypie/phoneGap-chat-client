@@ -1,4 +1,4 @@
-[My page](page.md)
+[My page](/demo)
 
 ## Synopsis
 

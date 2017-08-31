@@ -1,7 +1,7 @@
 
 #### Michał Kobiec and Anita Pietrzyk proudly presents:
 # The ultimate chat app!
-  ![](https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/main-picture.png)
+![](https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/main-picture.png =250x)
 a simple application which keeps you **IN TOUCH**
 with friends, by chatting in private or public rooms
 with possibility of exchanging pictures, audio files, videos and other files!

@@ -18,7 +18,9 @@ After logging in, you will be redirected to public room, which is accessible and
 ### Messages
 All messages sent by users from current room appears in the message board(1). There are 5 main types of messages with different appearence on the message board:
 
-Text messages
+Text messages:
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/text.png?raw=true" width="300"/>
 
 Image messages:
 
@@ -33,6 +35,8 @@ Audio messages
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/audio.png?raw=true" width="300"/>
 
 * File messages
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/file.png?raw=true" width="300"/>
 
 >You joined conversation later? Don’t worry you will not miss single message, all messages are archived and visible for you even if you joined the room later. To see them, you can scroll up using the toolbar on the right side of the field. **Warning** In custom rooms, all messages are deleted when last person leave!
 

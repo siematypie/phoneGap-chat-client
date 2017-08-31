@@ -21,6 +21,12 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "amazing-chat"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "amazing-chat"
         }
     },
     "dependent_plugins": {

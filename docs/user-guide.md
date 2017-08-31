@@ -24,6 +24,7 @@ Text messages:
 
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/text.png?raw=true" width="300"/>
 
+> All urls in messages are automaticly recognized and transformed to links, so you can immediately visit mentioned site!
 Image messages:
 
 <img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" width="300"/>

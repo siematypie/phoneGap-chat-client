@@ -10,10 +10,10 @@ You can scan with your phone qr-code below:
 Just type in your name, hit enter or press button that will appear and, if username is not already in use, you're in!
 
 ## 3. Say something!
-
-image no.1
-
 After logging in, you will be redirected to public room, which is accessible and visible for everybody who uses application. Basic view:
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/options.png?raw=true"/>
+
+
 
 ### Messages
 All messages sent by users from current room appears in the message board(1). There are 5 main types of messages with different appearence on the message board:

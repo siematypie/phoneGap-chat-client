@@ -44,11 +44,20 @@ Audio messages
 
 **To send a message, type your thoughts in “Your message” field and press Enter (3)**
 #### Sending files
-As previously said, Ultimate chat-app has more option available, then just sending messages:
--        You can send a file from your phone by clicking “folder” icon and then selecting the file you would like to share (4)
--        you can take a picture and send it directly to a chat room by clicking camera icon (5)
--        You can record video and share with friends by clicking video icon (6)
--        You can record voice message by clicking last icon. (7)
+As previously said, Ultimate chat-app has more option available, than just sending messages. Take a look at this button group:
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/buttons.png?raw=true"/>
+
+-        You can **send a file** from your phone by clicking “folder” icon and then selecting the file you would like to share (4)
+-        you can **take a picture** and send it directly to a chat room by clicking camera icon (5)
+-        You can **record video** and share with friends by clicking video icon (6)
+-        You can **record voice** message by clicking last icon. (7)
+
+After you choose file, upload progress bar will appear on the screen:
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/progress-bar.png?raw=true"/>
+
+> You can **cancel** in-progress upload by pressing cancel button
 
 ### Rooms
 
@@ -77,6 +86,8 @@ Private room gives you an option to invite users to the room. In order to do tha
 ### Users
 On the bottom side, in “Users logged in” you can see all your friends who are currently logged in to the Ultimate chat-app
 On the left side you can see messages send by your friends.
+
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/logged-in.png?raw=true"/>
 
 >You can also **Log out** (left down corner(8)) from the Ultimate chat-app when you do not use it.
 

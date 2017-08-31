@@ -19,6 +19,9 @@ After logging in, you will be redirected to public room, which is accessible and
 All messages sent by users from current room appears in the message board(1). There are 5 main types of messages with different appearence on the message board:
 * Text messages
 * Image messages
+<img src="https://github.com/siematypie/phoneGap-chat-client/blob/master/docs/images/image.png?raw=true" />
+
+
 * Video messages
 * Audio messages
 * File messages

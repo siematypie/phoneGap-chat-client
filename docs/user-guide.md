@@ -2,6 +2,7 @@
 
 ## 1. Download app
 You can scan with your phone qr-code below:
+
 <img src="https://chart.googleapis.com/chart?chs=116x116&cht=qr&chl=https://build.phonegap.com/apps/2774587/install/X37HhLTxcPB1j_714bia&chld=L|1&choe=UTF-8"/>
 
 
